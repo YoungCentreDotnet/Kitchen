@@ -1,3 +1,8 @@
+using Kitchen.Backend.DataLayer;
+using Kitchen.Backend.Repastories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,7 +11,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IService, Service>();
+builder.Services.AddDbContext<KitchenDbContext>(option => 
+option.UseNpgsql(builder.Configuration.GetConnectionString("KitchenConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
