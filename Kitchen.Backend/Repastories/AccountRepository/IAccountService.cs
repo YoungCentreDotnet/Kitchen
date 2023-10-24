@@ -1,6 +1,9 @@
-﻿namespace Kitchen.Backend.Repastories.AccountRepository
+﻿using Kitchen.Backend.Model;
+
+namespace Kitchen.Backend.Repastories.AccountRepository
 {
-    public class IAccountService
+    public interface IAccountService
     {
+        Task<bool> SignUpAsync(User user);
     }
 }
