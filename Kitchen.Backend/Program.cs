@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IService, Service>();
+builder.Services.AddTransient<IService, Service>();
 builder.Services.AddDbContext<KitchenDbContext>(option => 
 option.UseNpgsql(builder.Configuration.GetConnectionString("KitchenConnection")));
 var app = builder.Build();
