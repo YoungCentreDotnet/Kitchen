@@ -1,5 +1,7 @@
 using Kitchen.Backend.DataLayer;
 using Kitchen.Backend.Repastories;
+using Kitchen.Backend.Repastories.AccountRepository;
+using Kitchen.Backend.Repastories.StudyRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +13,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<IService, Service>();
+
+builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IKitchenService, KitchenService>();
+
 builder.Services.AddDbContext<KitchenDbContext>(option => 
 option.UseNpgsql(builder.Configuration.GetConnectionString("KitchenConnection")));
 var app = builder.Build();
