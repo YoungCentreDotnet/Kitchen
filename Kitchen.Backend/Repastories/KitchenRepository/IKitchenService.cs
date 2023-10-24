@@ -1,6 +1,6 @@
 ﻿namespace Kitchen.Backend.Repastories.StudyRepository
 {
-    public class IStudyService
+    public class IKitchenService
     {
     }
 }
