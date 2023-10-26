@@ -1,5 +1,5 @@
 ﻿using Kitchen.Backend.Model;
-using Kitchen.Backend.Repastories.AccountRepository;
+using Kitchen.Backend.Repastories.Account;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kitchen.Backend.Controllers
@@ -8,22 +8,12 @@ namespace Kitchen.Backend.Controllers
     [Route("api/[controller]/[action]")]
     public class AccountControllers:ControllerBase
     {
-        private readonly IAccountService _account;
+        private readonly IAdminAccountService _account;
 
-        public AccountControllers(IAccountService account)
+        public AccountControllers(IAdminAccountService account)
         {
             _account = account;
 
-        }
-        [HttpPost]
-        public async Task<IActionResult> SignUp( User user)
-        {
-            var res = await _account.SignUpAsync(user);
-            if (res == false)
-            {
-                return NotFound();
-            }
-            return Ok(res);
         }
         
 

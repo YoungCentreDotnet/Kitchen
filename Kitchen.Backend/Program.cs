@@ -1,6 +1,6 @@
 using Kitchen.Backend.DataLayer;
 using Kitchen.Backend.Repastories;
-using Kitchen.Backend.Repastories.AccountRepository;
+using Kitchen.Backend.Repastories.Account;
 using Kitchen.Backend.Repastories.StudyRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IAdminAccountService, AdminAccountService>();
 builder.Services.AddTransient<IKitchenService, KitchenService>();
 
 builder.Services.AddDbContext<KitchenDbContext>(option => 
