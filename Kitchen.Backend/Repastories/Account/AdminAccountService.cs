@@ -155,8 +155,8 @@ namespace Kitchen.Backend.Repastories.Account
                     await _kitchen.AddAsync(entity);
                     await _kitchen.SaveChangesAsync();
                     
-                    stateResponse.Code = (int)StatusResponse.Success;
-                    stateResponse.Message = nameof(StatusResponse.Success);
+                    stateResponse.Code = (int)StatusResponse.Created;
+                    stateResponse.Message = nameof(StatusResponse.Created);
                     stateResponse.Data = entity;
 
                 }
@@ -176,8 +176,7 @@ namespace Kitchen.Backend.Repastories.Account
                 stateResponse.Data = new Admin();
 
             }
-            return stateResponse
-            ;
+            return stateResponse;
         }
     }
 }

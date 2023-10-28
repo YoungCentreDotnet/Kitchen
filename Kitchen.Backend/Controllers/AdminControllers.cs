@@ -1,16 +1,17 @@
 ﻿using Kitchen.Backend.Model;
 using Kitchen.Backend.Repastories.Account;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kitchen.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class AccountControllers:ControllerBase
+    public class AdminControllers:ControllerBase
     {
         private readonly IAdminAccountService _account;
 
-        public AccountControllers(IAdminAccountService account)
+        public AdminControllers(IAdminAccountService account)
         {
             _account = account;
 
@@ -21,10 +22,10 @@ namespace Kitchen.Backend.Controllers
             var get = await _account.GetAllDataAsync();
             if (get.Code == 200 && get.Data is not null)
             {
-                return Ok(get.Data);
+                return Ok(get);
 
             }
-            if (get.Code == 500 && get.Data is not null)
+            if (get.Code == 500 && get.Data is null)
             {
                 return BadRequest(get);
 
@@ -38,7 +39,7 @@ namespace Kitchen.Backend.Controllers
             var get = await _account.GetByIdAsync(id);
             if(get.Code == 200 && get.Data is not null)
             {
-                return Ok(get.Data); 
+                return Ok(get); 
             }
             if (get.Code == 500 && get.Data is not null)
             {
@@ -54,7 +55,7 @@ namespace Kitchen.Backend.Controllers
             {
                 if(del.Code == 200 && del.Data is true)
                 {
-                     return Ok(del.Data);
+                     return Ok(del);
                 }
                 if(del.Code == 500 && del.Data is false)
                 {
@@ -69,9 +70,9 @@ namespace Kitchen.Backend.Controllers
         {
             var del = await _account.SignUpAsync(entity);
             {
-                if (del.Code == 200 && del.Data is not null)
+                if (del.Code == 201 && del.Data is not null)
                 {
-                    return Ok(del.Data);
+                    return Ok(del);
                 }
                 if (del.Code == 500 && del.Data is not null)
                 {
@@ -98,8 +99,5 @@ namespace Kitchen.Backend.Controllers
             }
 
         }
-
-
-
     }
 }
