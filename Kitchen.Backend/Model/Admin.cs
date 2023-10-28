@@ -16,7 +16,7 @@ namespace Kitchen.Backend.Model
         [EmailAddress]
         public string Login { get; set; }
         [PasswordPropertyText]
-        [MaxLength(8)]
+        [MaxLength(18)]
         public string Password { get; set; }
     }
 }
