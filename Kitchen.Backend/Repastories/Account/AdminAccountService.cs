@@ -13,6 +13,7 @@ namespace Kitchen.Backend.Repastories.Account
             _kitchen = kitchen;
         
         }
+        /////////////////////////////////////
         public async Task<StateResponse<bool>> DalateAsync(string login, string password)
         {
             StateResponse<bool> stateResponse = new StateResponse<bool>();
@@ -46,7 +47,7 @@ namespace Kitchen.Backend.Repastories.Account
             }
             return stateResponse;
         }
-
+        ////////////////////////////////////////////////
         public async Task<StateResponse<IEnumerable<Admin>>> GetAllDataAsync()
         {
             
@@ -80,6 +81,8 @@ namespace Kitchen.Backend.Repastories.Account
             return stateResponse;
         }
 
+        /////////////////////////////////////////////////
+
         public async Task<StateResponse<Admin>> GetByIdAsync(int id)
         {
             StateResponse<Admin> stateResponse = new StateResponse<Admin>();
@@ -110,7 +113,7 @@ namespace Kitchen.Backend.Repastories.Account
             }
             return stateResponse;
         }
-
+        ///////////////////////////////////
         public async Task<StateResponse<Admin>> LogInAsync(string login, string password)
         {
             StateResponse<Admin> stateResponse = new StateResponse<Admin>();
@@ -143,7 +146,7 @@ namespace Kitchen.Backend.Repastories.Account
             }
             return stateResponse;
         }
-
+        ////////////////////////////////////////////////
         public async Task<StateResponse<Admin>> SignUpAsync(Admin entity)
         {
             StateResponse<Admin> stateResponse = new StateResponse<Admin>();

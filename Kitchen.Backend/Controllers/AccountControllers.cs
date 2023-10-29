@@ -9,13 +9,14 @@ namespace Kitchen.Backend.Controllers
     public class AccountControllers:ControllerBase
     {
         private readonly IAdminAccountService _account;
-
+        ////////////////////////////////////////////////////
         public AccountControllers(IAdminAccountService account)
         {
             _account = account;
 
         }
         [HttpGet]
+        ////////////////////////////////////////////////////
         public async Task<IActionResult> GetAllAdminData()
         {
             var get = await _account.GetAllDataAsync();
@@ -33,6 +34,7 @@ namespace Kitchen.Backend.Controllers
 
         }
         [HttpGet]
+        ////////////////////////////////////////////////////
         public async Task<IActionResult> GetById(int id)
         {
             var get = await _account.GetByIdAsync(id);
@@ -48,6 +50,7 @@ namespace Kitchen.Backend.Controllers
             return NotFound(get);
         }
         [HttpDelete]
+        ////////////////////////////////////////////////////
         public async Task<IActionResult> AccDalateAsync(string login, string password) 
         {
             var del = await _account.DalateAsync(login,password);
@@ -65,6 +68,7 @@ namespace Kitchen.Backend.Controllers
         
         }
         [HttpPost]
+        ////////////////////////////////////////////////////
         public async Task<IActionResult> SignUpAdminAsync([FromForm]Admin entity)
         {
             var del = await _account.SignUpAsync(entity);
@@ -82,6 +86,7 @@ namespace Kitchen.Backend.Controllers
 
         }
         [HttpGet]
+        ////////////////////////////////////////////////////
         public async Task<IActionResult> LigInAdminAsync(string login, string password)
         {
             var del = await _account.LogInAsync(login,password);
@@ -95,11 +100,11 @@ namespace Kitchen.Backend.Controllers
                     return Ok(del);
                 }
                 return NotFound(del);
+                
             }
 
         }
-
-
+        ////////////////////////////////////////////////////
 
     }
 }
