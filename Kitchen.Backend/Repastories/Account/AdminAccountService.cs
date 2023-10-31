@@ -23,8 +23,8 @@ namespace Kitchen.Backend.Repastories.Account
                 {
                     _kitchen.Admins.Remove(entityData);
                     await _kitchen.SaveChangesAsync();
-                    stateResponse.Code = StatusCodes.Status200OK;
-                    stateResponse.Message = nameof(StatusCodes.Status200OK);
+                    stateResponse.Code = StatusCodes.Status202Accepted;
+                    stateResponse.Message = nameof(StatusCodes.Status202Accepted);
                     stateResponse.Data = true;
 
                 }

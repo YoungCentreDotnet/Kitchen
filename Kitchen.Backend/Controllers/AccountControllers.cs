@@ -52,7 +52,7 @@ namespace Kitchen.Backend.Controllers
         {
             var del = await _account.DalateAsync(login,password);
             {
-                if(del.Code == 200 && del.Data is true)
+                if(del.Code == 202 && del.Data is true)
                 {
                      return Ok(del);
                 }
