@@ -23,15 +23,15 @@ namespace Kitchen.Backend.Repastories.Account
                 {
                     _kitchen.Admins.Remove(entityData);
                     await _kitchen.SaveChangesAsync();
-                    stateResponse.Code = (int)StatusResponse.Success;
-                    stateResponse.Message = nameof(StatusResponse.Success);
+                    stateResponse.Code = StatusCodes.Status200OK;
+                    stateResponse.Message = nameof(StatusCodes.Status200OK);
                     stateResponse.Data = true;
 
                 }
                 if (entityData is null)
                 {
-                    stateResponse.Code = (int)StatusResponse.Not_Found;
-                    stateResponse.Message = nameof(StatusResponse.Not_Found);
+                    stateResponse.Code = StatusCodes.Status404NotFound;
+                    stateResponse.Message = nameof(StatusCodes.Status404NotFound);
                     stateResponse.Data = false;
 
                 }
@@ -111,6 +111,7 @@ namespace Kitchen.Backend.Repastories.Account
             return stateResponse;
         }
 
+
         public async Task<StateResponse<Admin>> LogInAsync(string login, string password)
         {
             StateResponse<Admin> stateResponse = new StateResponse<Admin>();
@@ -119,16 +120,16 @@ namespace Kitchen.Backend.Repastories.Account
                 var entityData = await _kitchen.Admins.FirstOrDefaultAsync(p => p.Login == login && p.Password == password);
                 if (entityData is not null)
                 {
-                    
-                    stateResponse.Code = (int)StatusResponse.Success;
-                    stateResponse.Message = nameof(StatusResponse.Success);
+
+                    stateResponse.Code = StatusCodes.Status200OK;
+                    stateResponse.Message = nameof(StatusCodes.Status200OK);
                     stateResponse.Data = entityData;
 
                 }
                 if (entityData is null)
                 {
-                    stateResponse.Code = (int)StatusResponse.Not_Found;
-                    stateResponse.Message = nameof(StatusResponse.Not_Found);
+                    stateResponse.Code = StatusCodes.Status404NotFound;
+                    stateResponse.Message = nameof(StatusCodes.Status404NotFound);
                     stateResponse.Data = new Admin();
 
                 }
@@ -147,37 +148,35 @@ namespace Kitchen.Backend.Repastories.Account
         public async Task<StateResponse<Admin>> SignUpAsync(Admin entity)
         {
             StateResponse<Admin> stateResponse = new StateResponse<Admin>();
+            var entityData = await _kitchen.Admins.FirstOrDefaultAsync(p => p.Id == entity.Id);
             try
             {
-                
-                if (entity is not null)
+                if (entityData is not null)
                 {
-                    await _kitchen.AddAsync(entity);
-                    await _kitchen.SaveChangesAsync();
-                    
-                    stateResponse.Code = (int)StatusResponse.Success;
-                    stateResponse.Message = nameof(StatusResponse.Success);
+
+                    stateResponse.Code = StatusCodes.Status302Found;
+                    stateResponse.Message = nameof(StatusCodes.Status302Found);
                     stateResponse.Data = entity;
-
                 }
-                if (entity is null)
+                else if (entityData is null && entity is not null)
                 {
-                    stateResponse.Code = (int)StatusResponse.Not_Found;
-                    stateResponse.Message = nameof(StatusResponse.Not_Found);
-                    stateResponse.Data = new Admin();
-
+                    await _kitchen.Admins.AddAsync(entity);
+                    await _kitchen.SaveChangesAsync();
+                    stateResponse.Code = (int)StatusResponse.Created;
+                    stateResponse.Message = nameof(StatusResponse.Created);
+                    stateResponse.Data = entity;
                 }
 
             }
             catch
             {
+
                 stateResponse.Code = (int)StatusResponse.Server_Eror;
                 stateResponse.Message = nameof(StatusResponse.Server_Eror);
                 stateResponse.Data = new Admin();
-
             }
-            return stateResponse
-            ;
+            return stateResponse;
+
         }
     }
 }

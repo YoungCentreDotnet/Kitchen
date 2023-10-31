@@ -4,6 +4,8 @@
     {
         Success = 200,
         Server_Eror = 500,
-        Not_Found = 404
+        Found = 302,
+        Not_Found = 404,
+        Created = 201
     }
 }
