@@ -96,5 +96,20 @@ namespace Kitchen.Backend.Controllers
                 return NotFound(del);
             }
         }
+        [HttpPatch]
+        public async Task<IActionResult> UpdateAdminAsync(int id,[FromForm] Admin entity)
+        {
+            var del = await _account.UpdateAsync(id, entity);
+            if (del.Code == 200 && del.Data is true)
+            {
+                return Ok(del);
+            }
+            if (del.Code == 500 && del.Data is false)
+            {
+                return Ok(del);
+            }
+            return NotFound(del);
+        
+        }
     }
 }
