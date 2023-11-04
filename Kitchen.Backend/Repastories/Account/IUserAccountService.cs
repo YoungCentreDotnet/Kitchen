@@ -9,5 +9,6 @@ namespace Kitchen.Backend.Repastories.Account
         Task<StateResponse<bool>> DalateAsync(string login, string password);
         Task<StateResponse<IEnumerable<User>>> GetAllDataAsync();
         Task<StateResponse<User>> GetByIdAsync(int id);
+        Task<StateResponse<bool>> UpdateAsync(int id, User entity);
     }
 }

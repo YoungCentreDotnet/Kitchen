@@ -69,17 +69,16 @@ namespace Kitchen.Backend.Controllers
         public async Task<IActionResult> SignUpUserAsync([FromForm]User entity)
         {
             var del = await _account.SignUpAsync(entity);
+            if (del.Code == 302 && del.Data is not null)
             {
-                if (del.Code == 201 && del.Data is not null)
-                {
-                    return Ok(del);
-                }
-                if (del.Code == 500 && del.Data is null)
-                {
-                    return Ok(del);
-                }
-                return NotFound(del);
+                return StatusCode(StatusCodes.Status302Found, del);
+
             }
+            else if (del.Code == 201 && del.Data is not null)
+            {
+                return StatusCode(StatusCodes.Status201Created, del);
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError, del);
 
         }
         [HttpGet]
@@ -97,6 +96,22 @@ namespace Kitchen.Backend.Controllers
                 }
                 return NotFound(del);
             }
+        }
+        [HttpPatch]
+        public async Task<IActionResult> UpdateUserAsync(int id , [FromForm] User entity)
+        {
+            
+            var del = await _account.UpdateAsync(id, entity);
+            if (del.Code == 200 && del.Data is true)
+            {
+                return Ok(del);
+            }
+            if (del.Code == 500 && del.Data is false)
+            {
+                return Ok(del);
+            }
+            return NotFound(del);
+
         }
     }
 }
