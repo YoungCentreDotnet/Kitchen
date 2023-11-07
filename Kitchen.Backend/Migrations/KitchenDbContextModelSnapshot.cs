@@ -42,6 +42,7 @@ namespace Kitchen.Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasMaxLength(18)
                         .HasColumnType("character varying(18)");
 
@@ -50,7 +51,7 @@ namespace Kitchen.Backend.Migrations
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("Kitchen.Backend.Model.User", b =>
+            modelBuilder.Entity("Kitchen.Backend.Model.Table", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,6 +64,7 @@ namespace Kitchen.Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasMaxLength(18)
                         .HasColumnType("character varying(18)");
 
@@ -72,7 +74,7 @@ namespace Kitchen.Backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Table");
                 });
 #pragma warning restore 612, 618
         }

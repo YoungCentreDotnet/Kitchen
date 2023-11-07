@@ -15,7 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IAdminAccountService, AdminAccountService>();
-builder.Services.AddTransient<IUserAccountService, UserAccountService>();
+//builder.Services.AddTransient<IUserAccountService, UserAccountService>();
 
 builder.Services.AddTransient<IKitchenService, KitchenService>();
 

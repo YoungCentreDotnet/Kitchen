@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -7,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kitchen.Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class KitchenMigration : Migration
+    public partial class AddUserMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +20,7 @@ namespace Kitchen.Backend.Migrations
                     FirsName = table.Column<string>(type: "text", nullable: false),
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Login = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false)
+                    Password = table.Column<string>(type: "character varying(18)", maxLength: 18, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,20 +28,18 @@ namespace Kitchen.Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Table",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FirsName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    DataOfBrith = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
                     Login = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "character varying(18)", maxLength: 18, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_Table", x => x.Id);
                 });
         }
 
@@ -53,7 +50,7 @@ namespace Kitchen.Backend.Migrations
                 name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Table");
         }
     }
 }

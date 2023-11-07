@@ -185,7 +185,10 @@ namespace Kitchen.Backend.Repastories.Account
                 var upd = await _kitchen.Admins.FirstOrDefaultAsync(p => p.Id == id);
                 if (upd is not null && entity is not null)
                 {
-                    _kitchen.Admins.Update(entity);
+                    upd.FirsName = entity.FirsName;
+                    upd.LastName = entity.LastName;
+                    upd.Login = entity.Login;
+                    upd.Password = entity.Password;
                     await _kitchen.SaveChangesAsync();
                     stateResponse.Code = StatusCodes.Status200OK;
                     stateResponse.Message = nameof(StatusCodes.Status200OK);
