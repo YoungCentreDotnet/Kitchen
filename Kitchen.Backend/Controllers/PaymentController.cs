@@ -2,13 +2,13 @@
 
 namespace Kitchen.Backend.Controllers
 {
-    public class PaymentController : Controller
+    public class PaymentController 
     {
-        [ApiController]
-        [Route("api/[controller]/[action]")]
-        public class PaymentControllers : ControllerBase
-        {
+        //[ApiController]
+        //[Route("api/[controller]/[action]")]
+        //public class PaymentControllers : ControllerBase
+        //{
 
-        }
+        //}
     }
 }

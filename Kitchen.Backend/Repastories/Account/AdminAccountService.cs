@@ -8,10 +8,10 @@ namespace Kitchen.Backend.Repastories.Account
     {
         private readonly KitchenDbContext _kitchen;
 
-        public AdminAccountService(KitchenDbContext kitchen) 
+        public AdminAccountService(KitchenDbContext kitchen)
         {
             _kitchen = kitchen;
-        
+
         }
         public async Task<StateResponse<bool>> DalateAsync(string login, string password)
         {
@@ -110,7 +110,6 @@ namespace Kitchen.Backend.Repastories.Account
             }
             return stateResponse;
         }
-
 
         public async Task<StateResponse<Admin>> LogInAsync(string login, string password)
         {

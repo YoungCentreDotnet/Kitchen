@@ -1,7 +1,12 @@
 using Kitchen.Backend.DataLayer;
 using Kitchen.Backend.Repastories;
 using Kitchen.Backend.Repastories.Account;
+using Kitchen.Backend.Repastories.Menu;
+using Kitchen.Backend.Repastories.Payment;
+using Kitchen.Backend.Repastories.Post;
+using Kitchen.Backend.Repastories.Stock;
 using Kitchen.Backend.Repastories.StudyRepository;
+using Kitchen.Backend.Repastories.Table;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +21,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IAdminAccountService, AdminAccountService>();
 //builder.Services.AddTransient<IUserAccountService, UserAccountService>();
+
+builder.Services.AddTransient<IMenuService, MenuService>();
+//builder.Services.AddTransient<IPaymentService, PaymentService>();
+//builder.Services.AddTransient<IPostService, PostService>();
+//builder.Services.AddTransient<IStockService, StockService>();
+//builder.Services.AddTransient<ITableService, TableService>();
+
 
 builder.Services.AddTransient<IKitchenService, KitchenService>();
 
