@@ -2,7 +2,7 @@
 
 namespace Kitchen.Backend.Controllers
 {
-    public class StockController : Controller
+    public class KgProductController : Controller
     {
         [ApiController]
         [Route("api/[controller]/[action]")]

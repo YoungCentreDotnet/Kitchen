@@ -11,19 +11,19 @@ namespace Kitchen.Backend.Controllers
 
         [ApiController]
         [Route("api/[controller]/[action]")]
-        public class MenuControllers :ControllerBase
+        public class BeveragesControllers :ControllerBase
         {
-            private readonly IMenuService _menu;
+            private readonly IBeveragesService _menu;
 
-            public MenuControllers(IMenuService menu)
+            public BeveragesControllers(IBeveragesService menu)
             {
                 _menu = menu;
 
             }
             [HttpPost]
-            public async Task<IActionResult> AddFoodAsync([FromForm] Beverages entity)
+            public async Task<IActionResult> AddBeveragesAsync([FromForm] Beverages entity)
             {
-                var del = await _menu.AddFoodAsync(entity);
+                var del = await _menu.AddBeveragesAsync(entity);
                 if (del.Code == 302 && del.Data is not null)
                 {
                     return StatusCode(StatusCodes.Status302Found, del);
@@ -37,9 +37,9 @@ namespace Kitchen.Backend.Controllers
 
             }
             [HttpGet]
-            public async Task<IActionResult> GetAllMenuData()
+            public async Task<IActionResult> GetAllBeveragesData()
             {
-                var get = await _menu.GetAllAsync();
+                var get = await _menu.GetAllBeveragesAsync();
                 if (get.Code == 200 && get.Data is not null)
                 {
                     return Ok(get);
@@ -54,9 +54,9 @@ namespace Kitchen.Backend.Controllers
 
             }
             [HttpGet]
-            public async Task<IActionResult> GetByName(string name)
+            public async Task<IActionResult> GetByBeveragesName(string name)
             {
-                var get = await _menu.GetByNameAsync(name);
+                var get = await _menu.GetByBeveragesNameAsync(name);
                 if (get.Code == 200 && get.Data is not null)
                 {
                     return Ok(get);
@@ -69,9 +69,9 @@ namespace Kitchen.Backend.Controllers
                 return NotFound(get);
             }
             [HttpDelete]
-            public async Task<IActionResult> DalateFoodAsync(string type, string name)
+            public async Task<IActionResult> DalateBeveragesAsync(string type, string name)
             {
-                var del = await _menu.DalateFoodAsync(type, name);
+                var del = await _menu.DalateBeveragesAsync(type, name);
                 {
                     if (del.Code == 202 && del.Data is true)
                     {
@@ -86,9 +86,9 @@ namespace Kitchen.Backend.Controllers
 
             }
             [HttpPatch]
-            public async Task<IActionResult> UpdateFoodAsync(string type, string name, [FromForm] Beverages entity)
+            public async Task<IActionResult> UpdateBeveragesAsync(string type, string name, [FromForm] Beverages entity)
             {
-                var del = await _menu.UpdateAsync(type, name, entity);
+                var del = await _menu.UpdateBeveragesAsync(type, name, entity);
                 if (del.Code == 200 && del.Data is true)
                 {
                     return Ok(del);
@@ -101,9 +101,9 @@ namespace Kitchen.Backend.Controllers
 
             }
             [HttpPatch]
-            public async Task<IActionResult> PlusFoodAsync(string name, int number)
+            public async Task<IActionResult> PlusBeveragesAsync(string name, int number)
             {
-                var del = await _menu.PlusFoodAsync(name, number);
+                var del = await _menu.PlusBeveragesAsync(name, number);
                 if (del.Code == 200 && del.Data is not null)
                 {
                     return Ok(del);
@@ -116,9 +116,9 @@ namespace Kitchen.Backend.Controllers
 
             }
             [HttpPatch]
-            public async Task<IActionResult> MinusFoodAsync(string name, int number)
+            public async Task<IActionResult> MinusBeveragesAsync(string name, int number)
             {
-                var del = await _menu.MinusFoodAsync(name, number);
+                var del = await _menu.MinusBeveragesAsync(name, number);
                 if (del.Code == 200 && del.Data is not null)
                 {
                     return Ok(del);

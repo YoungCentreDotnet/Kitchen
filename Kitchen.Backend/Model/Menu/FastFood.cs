@@ -14,8 +14,6 @@ namespace Kitchen.Backend.Model.Menu
         [Required]
         public decimal Price { get; set; }
         [Required]
-        public int Number { get; set; }
-        [Required]
         public string? Discreption { get; set; }
 
     }

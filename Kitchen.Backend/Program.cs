@@ -22,10 +22,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IAdminAccountService, AdminAccountService>();
 //builder.Services.AddTransient<IUserAccountService, UserAccountService>();
 
-builder.Services.AddTransient<IMenuService, MenuService>();
+builder.Services.AddTransient<IBeveragesService, BeveragesService>();
+builder.Services.AddTransient<IDessertService, DessertService>();
+builder.Services.AddTransient<IFastFoodService, FastFoodService>();
 //builder.Services.AddTransient<IPaymentService, PaymentService>();
 //builder.Services.AddTransient<IPostService, PostService>();
-//builder.Services.AddTransient<IStockService, StockService>();
+//builder.Services.AddTransient<IKgProductService, KgProductService>();
+//builder.Services.AddTransient<IPieceProductService, PieceProductService>();
 //builder.Services.AddTransient<ITableService, TableService>();
 
 

@@ -1,28 +1,25 @@
 ﻿using Kitchen.Backend.DataLayer;
-using Kitchen.Backend.Model;
 using Kitchen.Backend.Model.Menu;
 using LinqToDB;
-using LinqToDB.Tools;
-using System.Collections.Generic;
 
 namespace Kitchen.Backend.Repastories.Menu
 {
-    public class MenuService : IMenuService
+    public class DessertService: IDessertService
     {
         private readonly KitchenDbContext _menu;
 
-        public MenuService(KitchenDbContext menu)
+        public DessertService(KitchenDbContext menu)
         {
             _menu = menu;
 
         }
-        
 
-        public async Task<StateResponse<Beverages>> AddFoodAsync(Beverages entity)
+
+        public async Task<StateResponse<Dessert>> AddDessertAsync(Dessert entity)
         {
-           
-            StateResponse<Beverages> stateResponse = new StateResponse<Beverages>();
-            var entityData = await _menu.Beveragess.FirstOrDefaultAsync(p => p.Id == entity.Id);
+
+            StateResponse<Dessert> stateResponse = new StateResponse<Dessert>();
+            var entityData = await _menu.Desserts.FirstOrDefaultAsync(p => p.Id == entity.Id);
             try
             {
                 if (entityData is not null)
@@ -33,7 +30,7 @@ namespace Kitchen.Backend.Repastories.Menu
                 }
                 else if (entityData is null && entity is not null)
                 {
-                    await _menu.Beveragess.AddAsync(entity);
+                    await _menu.Desserts.AddAsync(entity);
                     await _menu.SaveChangesAsync();
                     stateResponse.Code = StatusCodes.Status201Created;
                     stateResponse.Message = nameof(StatusCodes.Status201Created);
@@ -46,21 +43,21 @@ namespace Kitchen.Backend.Repastories.Menu
 
                 stateResponse.Code = StatusCodes.Status500InternalServerError;
                 stateResponse.Message = nameof(StatusCodes.Status500InternalServerError);
-                stateResponse.Data = new Beverages();
+                stateResponse.Data = new Dessert();
             }
             return stateResponse;
 
         }
 
-        public async Task<StateResponse<bool>> DalateFoodAsync(string type, string name)
+        public async Task<StateResponse<bool>> DalateDessertAsync(string type, string name)
         {
             StateResponse<bool> stateResponse = new StateResponse<bool>();
             try
             {
-                var entityData = await _menu.Beveragess.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
+                var entityData = await _menu.Desserts.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
                 if (entityData is not null)
                 {
-                    _menu.Beveragess.Remove(entityData);
+                    _menu.Desserts.Remove(entityData);
                     await _menu.SaveChangesAsync();
                     stateResponse.Code = StatusCodes.Status202Accepted;
                     stateResponse.Message = nameof(StatusCodes.Status202Accepted);
@@ -86,12 +83,12 @@ namespace Kitchen.Backend.Repastories.Menu
             return stateResponse;
         }
 
-        public async Task<StateResponse<IEnumerable<Beverages>>> GetAllAsync()
+        public async Task<StateResponse<IEnumerable<Dessert>>> GetAllDessertAsync()
         {
-            StateResponse<IEnumerable<Beverages>> stateResponse = new StateResponse<IEnumerable<Beverages>>();
+            StateResponse<IEnumerable<Dessert>> stateResponse = new StateResponse<IEnumerable<Dessert>>();
             try
             {
-                var entityData = await _menu.Beveragess.ToListAsync();
+                var entityData = await _menu.Desserts.ToListAsync();
                 if (entityData is null)
                 {
                     stateResponse.Code = StatusCodes.Status404NotFound;
@@ -117,12 +114,12 @@ namespace Kitchen.Backend.Repastories.Menu
             }
             return stateResponse;
         }
-        public async Task<StateResponse<Beverages>> GetByNameAsync(string name)
+        public async Task<StateResponse<Dessert>> GetByDessertNameAsync(string name)
         {
-            StateResponse<Beverages> stateResponse = new StateResponse<Beverages>();
+            StateResponse<Dessert> stateResponse = new StateResponse<Dessert>();
             try
             {
-                var entityData = await _menu.Beveragess.FirstOrDefaultAsync(p => p.Name == name);
+                var entityData = await _menu.Desserts.FirstOrDefaultAsync(p => p.Name == name);
                 if (entityData is not null)
                 {
                     stateResponse.Code = StatusCodes.Status200OK;
@@ -134,7 +131,7 @@ namespace Kitchen.Backend.Repastories.Menu
                 {
                     stateResponse.Code = StatusCodes.Status404NotFound;
                     stateResponse.Message = nameof(StatusCodes.Status404NotFound);
-                    stateResponse.Data = new Beverages();
+                    stateResponse.Data = new Dessert();
 
                 }
             }
@@ -142,19 +139,19 @@ namespace Kitchen.Backend.Repastories.Menu
             {
                 stateResponse.Code = StatusCodes.Status500InternalServerError;
                 stateResponse.Message = nameof(StatusCodes.Status500InternalServerError);
-                stateResponse.Data = new Beverages();
+                stateResponse.Data = new Dessert();
 
             }
             return stateResponse;
         }
 
-        public async Task<StateResponse<Beverages>> MinusFoodAsync(string name, int number)
+        public async Task<StateResponse<Dessert>> MinusDessertAsync(string name, int number)
         {
-            StateResponse<Beverages> stateResponse = new StateResponse<Beverages>();
+            StateResponse<Dessert> stateResponse = new StateResponse<Dessert>();
             try
             {
-                var upd = await _menu.Beveragess.FirstOrDefaultAsync(p => p.Name == name);
-                if (upd is not null )
+                var upd = await _menu.Desserts.FirstOrDefaultAsync(p => p.Name == name);
+                if (upd is not null)
                 {
                     upd.Number -= number;
                     await _menu.SaveChangesAsync();
@@ -166,24 +163,24 @@ namespace Kitchen.Backend.Repastories.Menu
                 {
                     stateResponse.Code = StatusCodes.Status404NotFound;
                     stateResponse.Message = nameof(StatusCodes.Status404NotFound);
-                    stateResponse.Data = new Beverages(); 
+                    stateResponse.Data = new Dessert();
                 }
             }
             catch
             {
                 stateResponse.Code = StatusCodes.Status500InternalServerError;
                 stateResponse.Message = nameof(StatusCodes.Status500InternalServerError);
-                stateResponse.Data = new Beverages();
+                stateResponse.Data = new Dessert();
             }
             return stateResponse;
         }
 
-        public async Task<StateResponse<Beverages>> PlusFoodAsync(string name, int number)
+        public async Task<StateResponse<Dessert>> PlusDessertAsync(string name, int number)
         {
-            StateResponse<Beverages> stateResponse = new StateResponse<Beverages>();
+            StateResponse<Dessert> stateResponse = new StateResponse<Dessert>();
             try
             {
-                var upd = await _menu.Beveragess.FirstOrDefaultAsync(p => p.Name == name);
+                var upd = await _menu.Desserts.FirstOrDefaultAsync(p => p.Name == name);
                 if (upd is not null)
                 {
                     upd.Number += number;
@@ -196,30 +193,29 @@ namespace Kitchen.Backend.Repastories.Menu
                 {
                     stateResponse.Code = StatusCodes.Status404NotFound;
                     stateResponse.Message = nameof(StatusCodes.Status404NotFound);
-                    stateResponse.Data = new Beverages();
+                    stateResponse.Data = new Dessert();
                 }
             }
             catch
             {
                 stateResponse.Code = StatusCodes.Status500InternalServerError;
                 stateResponse.Message = nameof(StatusCodes.Status500InternalServerError);
-                stateResponse.Data = new Beverages();
+                stateResponse.Data = new Dessert();
             }
             return stateResponse;
         }
 
-        public async Task<StateResponse<bool>> UpdateAsync(string type, string name, Beverages entity)
+        public async Task<StateResponse<bool>> UpdateDessertAsync(string type, string name, Dessert entity)
         {
             StateResponse<bool> stateResponse = new StateResponse<bool>();
             try
             {
-                var upd = await _menu.Beveragess.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
+                var upd = await _menu.Desserts.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
                 if (upd is not null && entity is not null)
                 {
                     upd.Name = entity.Name;
                     upd.Price = entity.Price;
                     upd.Number = entity.Number;
-                    upd.Litr = entity.Litr;
                     upd.Discreption = entity.Discreption;
                     await _menu.SaveChangesAsync();
                     stateResponse.Code = StatusCodes.Status200OK;
@@ -244,3 +240,4 @@ namespace Kitchen.Backend.Repastories.Menu
 
     }
 }
+
