@@ -64,9 +64,9 @@ namespace Kitchen.Backend.Controllers
             return NotFound(get);
         }
         [HttpDelete]
-        public async Task<IActionResult> DalateFastFoodAsync(string type, string name)
+        public async Task<IActionResult> DalateFastFoodAsync(string type, int id,  string name)
         {
-            var del = await _menu.DalateFastFoodAsync(type, name);
+            var del = await _menu.DalateFastFoodAsync(type,id, name);
             {
                 if (del.Code == 202 && del.Data is true)
                 {

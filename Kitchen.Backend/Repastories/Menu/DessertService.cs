@@ -19,7 +19,7 @@ namespace Kitchen.Backend.Repastories.Menu
         {
 
             StateResponse<Dessert> stateResponse = new StateResponse<Dessert>();
-            var entityData = await _menu.Desserts.FirstOrDefaultAsync(p => p.Id == entity.Id);
+            var entityData = await _menu.Desserts.FirstOrDefaultAsync(p => p.Id == entity.Id || p.Name == entity.Name);
             try
             {
                 if (entityData is not null)
@@ -49,12 +49,12 @@ namespace Kitchen.Backend.Repastories.Menu
 
         }
 
-        public async Task<StateResponse<bool>> DalateDessertAsync(string type, string name)
+        public async Task<StateResponse<bool>> DalateDessertAsync(int id,string name)
         {
             StateResponse<bool> stateResponse = new StateResponse<bool>();
             try
             {
-                var entityData = await _menu.Desserts.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
+                var entityData = await _menu.Desserts.FirstOrDefaultAsync(p => p.Id == id && p.Name == name);
                 if (entityData is not null)
                 {
                     _menu.Desserts.Remove(entityData);
@@ -205,12 +205,12 @@ namespace Kitchen.Backend.Repastories.Menu
             return stateResponse;
         }
 
-        public async Task<StateResponse<bool>> UpdateDessertAsync(string type, string name, Dessert entity)
+        public async Task<StateResponse<bool>> UpdateDessertAsync(string name, Dessert entity)
         {
             StateResponse<bool> stateResponse = new StateResponse<bool>();
             try
             {
-                var upd = await _menu.Desserts.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
+                var upd = await _menu.Desserts.FirstOrDefaultAsync(p => p.Name == name);
                 if (upd is not null && entity is not null)
                 {
                     upd.Name = entity.Name;

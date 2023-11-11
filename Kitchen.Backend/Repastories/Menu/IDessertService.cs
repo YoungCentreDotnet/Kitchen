@@ -9,7 +9,7 @@ namespace Kitchen.Backend.Repastories.Menu
         Task<StateResponse<Dessert>> MinusDessertAsync(string name, int number);
         Task<StateResponse<IEnumerable<Dessert>>> GetAllDessertAsync();
         Task<StateResponse<Dessert>> GetByDessertNameAsync(string name);
-        Task<StateResponse<bool>> DalateDessertAsync(string type, string name);
-        Task<StateResponse<bool>> UpdateDessertAsync(string type, string name, Dessert entity);
+        Task<StateResponse<bool>> DalateDessertAsync(int id, string name);
+        Task<StateResponse<bool>> UpdateDessertAsync(string name, Dessert entity);
     }
 }

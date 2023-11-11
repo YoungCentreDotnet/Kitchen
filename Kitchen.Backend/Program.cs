@@ -25,10 +25,10 @@ builder.Services.AddTransient<IAdminAccountService, AdminAccountService>();
 builder.Services.AddTransient<IBeveragesService, BeveragesService>();
 builder.Services.AddTransient<IDessertService, DessertService>();
 builder.Services.AddTransient<IFastFoodService, FastFoodService>();
+builder.Services.AddTransient<IKgProductService, KgProductService>();
+builder.Services.AddTransient<IPieceProductServices, PieceProductService>();
 //builder.Services.AddTransient<IPaymentService, PaymentService>();
 //builder.Services.AddTransient<IPostService, PostService>();
-//builder.Services.AddTransient<IKgProductService, KgProductService>();
-//builder.Services.AddTransient<IPieceProductService, PieceProductService>();
 //builder.Services.AddTransient<ITableService, TableService>();
 
 
