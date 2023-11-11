@@ -6,11 +6,11 @@ namespace Kitchen.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class AccountControllers:ControllerBase
+    public class AccountController:ControllerBase
     {
         private readonly IAdminAccountService _account;
 
-        public AccountControllers(IAdminAccountService account)
+        public AccountController(IAdminAccountService account)
         {
             _account = account;
 

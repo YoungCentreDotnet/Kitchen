@@ -147,7 +147,7 @@ namespace Kitchen.Backend.Repastories.Account
         public async Task<StateResponse<Admin>> SignUpAsync(Admin entity)
         {
             StateResponse<Admin> stateResponse = new StateResponse<Admin>();
-            var entityData = await _kitchen.Admins.FirstOrDefaultAsync(p => p.Id == entity.Id);
+            var entityData = await _kitchen.Admins.FirstOrDefaultAsync(p => p.Id == entity.Id || p.Login == entity.Login);
             try
             {
                 if (entityData is not null)

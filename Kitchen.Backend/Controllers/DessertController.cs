@@ -7,11 +7,11 @@ namespace Kitchen.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class DessertControllers : ControllerBase
+    public class DessertController : ControllerBase
     {
         private readonly IDessertService _menu;
 
-        public DessertControllers(IDessertService menu)
+        public DessertController(IDessertService menu)
         {
             _menu = menu;
 

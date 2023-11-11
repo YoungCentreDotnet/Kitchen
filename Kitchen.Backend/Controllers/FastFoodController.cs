@@ -6,11 +6,11 @@ namespace Kitchen.Backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class FastFoodControllers : ControllerBase
+    public class FastFoodController : ControllerBase
     {
         private readonly IFastFoodService _menu;
 
-        public FastFoodControllers(IFastFoodService menu)
+        public FastFoodController(IFastFoodService menu)
         {
             _menu = menu;
 

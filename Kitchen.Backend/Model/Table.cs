@@ -9,9 +9,6 @@ namespace Kitchen.Backend.Model
         [Identity]
         public int Id { get; set; }
         [Required]
-        public string? Title { get; set; }
-        [Required]
-        [EmailAddress]
         public string? Login { get; set; }
         [PasswordPropertyText]
         [MinLength(8)]

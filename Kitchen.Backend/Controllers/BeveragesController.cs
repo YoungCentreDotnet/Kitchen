@@ -12,11 +12,11 @@ namespace Kitchen.Backend.Controllers
 
         [ApiController]
         [Route("api/[controller]/[action]")]
-        public class BeveragesControllers :ControllerBase
+        public class BeveragesController :ControllerBase
         {
             private readonly IBeveragesService _menu;
 
-            public BeveragesControllers(IBeveragesService menu)
+            public BeveragesController(IBeveragesService menu)
             {
                 _menu = menu;
 

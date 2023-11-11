@@ -29,7 +29,7 @@ builder.Services.AddTransient<IKgProductService, KgProductService>();
 builder.Services.AddTransient<IPieceProductServices, PieceProductService>();
 //builder.Services.AddTransient<IPaymentService, PaymentService>();
 //builder.Services.AddTransient<IPostService, PostService>();
-//builder.Services.AddTransient<ITableService, TableService>();
+builder.Services.AddTransient<ITableService, TableService>();
 
 
 builder.Services.AddTransient<IKitchenService, KitchenService>();
