@@ -3,6 +3,7 @@ using Kitchen.Backend.Model.Menu;
 using Kitchen.Backend.Repastories.Menu;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Principal;
+using System.Xml.Linq;
 
 
 namespace Kitchen.Backend.Controllers
@@ -69,9 +70,9 @@ namespace Kitchen.Backend.Controllers
                 return NotFound(get);
             }
             [HttpDelete]
-            public async Task<IActionResult> DalateBeveragesAsync(string type, string name)
-            {
-                var del = await _menu.DalateBeveragesAsync(type, name);
+            public async Task<IActionResult> DalateBeveragesAsync(int id, string name)
+        {
+                var del = await _menu.DalateBeveragesAsync(id, name);
                 {
                     if (del.Code == 202 && del.Data is true)
                     {
@@ -86,9 +87,9 @@ namespace Kitchen.Backend.Controllers
 
             }
             [HttpPatch]
-            public async Task<IActionResult> UpdateBeveragesAsync(string type, string name, [FromForm] Beverages entity)
+            public async Task<IActionResult> UpdateBeveragesAsync(string name, [FromForm] Beverages entity)
             {
-                var del = await _menu.UpdateBeveragesAsync(type, name, entity);
+                var del = await _menu.UpdateBeveragesAsync(name, entity);
                 if (del.Code == 200 && del.Data is true)
                 {
                     return Ok(del);

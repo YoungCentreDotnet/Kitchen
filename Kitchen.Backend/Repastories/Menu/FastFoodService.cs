@@ -19,7 +19,7 @@ namespace Kitchen.Backend.Repastories.Menu
         {
 
             StateResponse<FastFood> stateResponse = new StateResponse<FastFood>();
-            var entityData = await _menu.FastFoods.FirstOrDefaultAsync(p => p.Id == entity.Id);
+            var entityData = await _menu.FastFoods.FirstOrDefaultAsync(p => p.Id == entity.Id || p.Name == entity.Name);
             try
             {
                 if (entityData is not null)
@@ -49,12 +49,12 @@ namespace Kitchen.Backend.Repastories.Menu
 
         }
 
-        public async Task<StateResponse<bool>> DalateFastFoodAsync(string type, string name)
+        public async Task<StateResponse<bool>> DalateFastFoodAsync(string type, int id, string name)
         {
             StateResponse<bool> stateResponse = new StateResponse<bool>();
             try
             {
-                var entityData = await _menu.FastFoods.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
+                var entityData = await _menu.FastFoods.FirstOrDefaultAsync(p => p.Type == type && p.Id == id && p.Name == name);
                 if (entityData is not null)
                 {
                     _menu.FastFoods.Remove(entityData);
@@ -150,7 +150,7 @@ namespace Kitchen.Backend.Repastories.Menu
             StateResponse<bool> stateResponse = new StateResponse<bool>();
             try
             {
-                var upd = await _menu.FastFoods.FirstOrDefaultAsync(p => p.Type == type && p.Name == name);
+                var upd = await _menu.FastFoods.FirstOrDefaultAsync(p => p.Name == name);
                 if (upd is not null && entity is not null)
                 {
                     upd.Name = entity.Name;
