@@ -9,15 +9,9 @@ namespace Kitchen.Backend.Model.Post
         [Identity]
         public int Id { get; set; }
         [Required]
-        public string? FirsName { get; set; }
+        public string? PostFoto { get; set; } 
         [Required]
-        public string? LastName { get; set; }
-        [Required]
-        [EmailAddress]
-        public string? Login { get; set; }
-        [PasswordPropertyText]
-        [MinLength(8)]
-        [MaxLength(18)]
-        public string Password { get; set; }
+        public string? Descreption { get; set; }
+        
     }
 }

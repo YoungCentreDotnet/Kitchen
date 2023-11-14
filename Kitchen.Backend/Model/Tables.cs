@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace Kitchen.Backend.Model
 {
-    public class Table
+    public class Tables
     {
         [Identity]
         public int Id { get; set; }

@@ -12,14 +12,14 @@ namespace Kitchen.Backend.DataLayer
         public KitchenDbContext(DbContextOptions<KitchenDbContext> options) 
             : base(options) { }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Table> Tables { get; set; }
+        public DbSet<Tables> Tabless { get; set; }
         public DbSet<Beverages> Beveragess { get; set; }
         public DbSet<Dessert> Desserts { get; set; }
         public DbSet<FastFood> FastFoods { get; set; }
         public DbSet<KgProduct> KgProducts { get; set; }
         public DbSet<PieceProduct> PieceProducts { get; set; }
         //public DbSet<Payment> Payments { get; set; }
-        //public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         public DbSet<Worker> Workers { get; set; }
     }

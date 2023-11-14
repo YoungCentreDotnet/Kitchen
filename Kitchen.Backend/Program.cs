@@ -3,7 +3,7 @@ using Kitchen.Backend.Repastories;
 using Kitchen.Backend.Repastories.Account;
 using Kitchen.Backend.Repastories.Menu;
 using Kitchen.Backend.Repastories.Payment;
-using Kitchen.Backend.Repastories.Post;
+using Kitchen.Backend.Repastories.Posts;
 using Kitchen.Backend.Repastories.Stock;
 using Kitchen.Backend.Repastories.StudyRepository;
 using Kitchen.Backend.Repastories.Table;
@@ -28,7 +28,7 @@ builder.Services.AddTransient<IFastFoodService, FastFoodService>();
 builder.Services.AddTransient<IKgProductService, KgProductService>();
 builder.Services.AddTransient<IPieceProductServices, PieceProductService>();
 //builder.Services.AddTransient<IPaymentService, PaymentService>();
-//builder.Services.AddTransient<IPostService, PostService>();
+builder.Services.AddTransient<IPostService, PostService>();
 builder.Services.AddTransient<ITableService, TableService>();
 
 
